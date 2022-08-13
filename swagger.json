@@ -1,0 +1,867 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "title": "SECONDHAND-API-MANAGEMENT",
+        "description": "Final Project FSW Binar Academy",
+        "contact": {}
+    },
+    "host": "localhost:2000",
+    "basePath": "/",
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter your bearer token in the format **Bearer &lt;token>**"
+        }
+    },
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "summary": "Register Account",
+                "tags": [
+                    "Auth"
+                ],
+                "operationId": "RegisterAccount",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/RegisterAccountRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "summary": "Login Account",
+                "tags": [
+                    "Auth"
+                ],
+                "operationId": "LoginAccount",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/LoginAccountRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "/auth/me": {
+            "get": {
+                "summary": "Current User",
+                "tags": [
+                    "Auth"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "CurrentUser",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "/users/update/{id}": {
+            "put": {
+                "summary": "update Account",
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "updateAccount",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32",
+                        "description": ""
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "city",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "phoneNumber",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "picture",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "users/{id}": {
+            "get": {
+                "summary": "getUserById",
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "getUserById",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "summary": "getAllUsers",
+                "tags": [
+                    "User"
+                ],
+                "operationId": "getAllUsers",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "default": "Bearer {token}",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "/products/create": {
+            "post": {
+                "summary": "Create Product",
+                "tags": [
+                    "Products"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "CreateProduct",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "price",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32",
+                        "description": ""
+                    },
+                    {
+                        "name": "category",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "picture",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "sold",
+                        "in": "formData",
+                        "required": true,
+                        "type": "boolean",
+                        "description": ""
+                    },
+                    {
+                        "name": "isPublish",
+                        "in": "formData",
+                        "required": true,
+                        "type": "boolean",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            },
+            "/products": {
+                "get": {
+                    "summary": "get product all",
+                    "tags": [
+                        "Products"
+                    ],
+                    "operationId": "getproductall",
+                    "deprecated": false,
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "in": "header",
+                            "required": false,
+                            "default": "Bearer {token}",
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "headers": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/products/{id}": {
+            "put": {
+                "summary": "Update Product",
+                "tags": [
+                    "Products"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "UpdateProduct",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32",
+                        "description": ""
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "price",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32",
+                        "description": ""
+                    },
+                    {
+                        "name": "category",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "picture",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "isPublish",
+                        "in": "formData",
+                        "required": true,
+                        "type": "boolean",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Product",
+                "tags": [
+                    "Products"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "DeleteProduct",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            },
+            "get": {
+                "summary": "get product byId",
+                "tags": [
+                    "Products"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "getproductbyId",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "/users/{id}/products": {
+            "get": {
+                "summary": "get product by userId",
+                "tags": [
+                    "Products"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "getproductbyuserId",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "sold",
+                        "in": "query",
+                        "required": true,
+                        "type": "boolean",
+                        "description": ""
+                    },
+                    {
+                        "name": "isPublish",
+                        "in": "query",
+                        "required": true,
+                        "type": "boolean",
+                        "description": ""
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "/api/filter": {
+            "get": {
+                "summary": "filtered product",
+                "tags": [
+                    "Products"
+                ],
+                "operationId": "filteredproduct",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "sold",
+                        "in": "query",
+                        "required": true,
+                        "type": "boolean",
+                        "description": ""
+                    },
+                    {
+                        "name": "isPublish",
+                        "in": "query",
+                        "required": true,
+                        "type": "boolean",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "/transactions/user/{id}": {
+            "get": {
+                "summary": "getTransactionByUserId",
+                "tags": [
+                    "Transactions"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "getTransactionByUserId",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "transactions/seller/{id}": {
+            "get": {
+                "summary": "getTransactionByOwnerId",
+                "tags": [
+                    "Transactions"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "getTransactionByOwnerId",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "/transactions": {
+            "post": {
+                "summary": "create transaction",
+                "tags": [
+                    "Transactions"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "operationId": "createtransaction",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/createtransactionrequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "RegisterAccountRequest": {
+            "title": "RegisterAccountRequest",
+            "example": {
+                "name": "coba",
+                "email": "coba@gmail.com",
+                "password": "coba12345"
+            },
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "email",
+                "password"
+            ]
+        },
+        "LoginAccountRequest": {
+            "title": "LoginAccountRequest",
+            "example": {
+                "email": "coba@gmail.com",
+                "password": "coba12345"
+            },
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "email",
+                "password"
+            ]
+        },
+        "createtransactionrequest": {
+            "title": "createtransactionrequest",
+            "example": {
+                "product_id": 1,
+                "owner_id": 1,
+                "requestedPrice": 200000,
+                "isOpened": true
+            },
+            "type": "object",
+            "properties": {
+                "product_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "owner_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "requestedPrice": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "isOpened": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "product_id",
+                "owner_id",
+                "requestedPrice",
+                "isOpened"
+            ]
+        },
+        "ManaggingUsers": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "kota": {
+                    "type": "string"
+                },
+                "alamat": {
+                    "type": "string"
+                },
+                "noHp": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                }
+            }
+        },
+        "ManaggingProduct": {
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "sold": {
+                    "type": "boolean"
+                },
+                "isPublish": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "ManaggingTransaction": {
+            "properties": {
+                "owner_id": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "product_id": {
+                    "type": "integer"
+                },
+                "requestedPrice": {
+                    "type": "string"
+                },
+                "isAccepted": {
+                    "type": "boolean"
+                },
+                "isRejected": {
+                    "type": "boolean"
+                },
+                "isOpened": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    "security": [],
+    "tags": [
+        {
+            "name": "Auth"
+        },
+        {
+            "name": "User"
+        },
+        {
+            "name": "Products"
+        },
+        {
+            "name": "Transactions"
+        }
+    ]
+}
