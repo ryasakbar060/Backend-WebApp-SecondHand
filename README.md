@@ -1,2 +1,1 @@
-# BE-SecondHand
-Bismillah Ya Allah
+# BE-Final-Project-WebApp-SecondHand
